@@ -1,5 +1,5 @@
 import './App.css';
-import { PersonList } from './components/reducer3';
+import { PersonList } from './components/List/list';
 
 function App() {
 
