@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useTodoList, actions } from './reducerList';
-import style from './list.module.css';
+import { Container, ListArea } from "./style";
 
 
 export const PersonList = () => {
@@ -27,7 +27,7 @@ export const PersonList = () => {
                 }
             })
         }else{
-            alert('Preencha os campos')
+            alert('Todos os campos são obrigatórios')
         }
         setName('');
         setEmail('');
@@ -52,9 +52,9 @@ export const PersonList = () => {
                 <button onClick={handleOrderList}>Ordernar A-Z</button>
             </div>
             <div className="listArea">
-                <div>
+                <Container >
                     {nameState.map((item, index) => (
-                        <div key={index} className={style.listItemInfos}>
+                        <ListArea key={index}>
                             <div>{index + 1}</div>
                             <div>{item.name}</div> 
                             <div>{item.email}</div>
@@ -65,9 +65,9 @@ export const PersonList = () => {
                                     name: item.name
                                 }
                             })}>Deletar</button>
-                        </div>     
+                        </ListArea>     
                     ))}
-                 </div>
+                </Container>
             </div>
         </div>
     );
