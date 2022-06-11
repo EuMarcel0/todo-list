@@ -1,28 +1,34 @@
 import { useState, useEffect } from "react";
 import { useTodoList, actions } from './reducerList';
-import { Container, ListArea } from "./style";
+import { MdRemoveCircle } from 'react-icons/md';
+import { 
+    BodyContainer,
+    Container,
+    InputsArea,
+    ListArea 
+} from "./style";
 
 
 export const PersonList = () => {
     
     const[nameState, dispatch] = useTodoList();
     const[name, setName] = useState('');
-    const[email, setEmail] = useState('');
+    const[job, setJob] = useState('');
     
     const handleInputListName = (event: React.ChangeEvent<HTMLInputElement>) => {
         setName(event.target.value);
     }
 
     const handleInputListEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setEmail(event.target.value);
+        setJob(event.target.value);
     }
 
     const handleInputAdd = () => {
-        if(name && email){
+        if(name && job){
             dispatch({
                 type: actions.adicionar,
                 payload: {
-                    email: email,
+                    job: job,
                     name: name,
                 }
             })
@@ -30,7 +36,7 @@ export const PersonList = () => {
             alert('Todos os campos são obrigatórios')
         }
         setName('');
-        setEmail('');
+        setJob('');
     }
 
     const handleOrderList = () => {
@@ -44,31 +50,29 @@ export const PersonList = () => {
     }, [name])
 
     return(
-        <div className="container">
-            <div className="listAddArea">
+        <BodyContainer>
+            <InputsArea>
                 <input type="text" value={name} onChange={handleInputListName}/>
-                <input type="text" value={email} onChange={handleInputListEmail}/>
+                <input type="text" value={job} onChange={handleInputListEmail}/>
                 <button onClick={handleInputAdd}>Adicionar</button>
                 <button onClick={handleOrderList}>Ordernar A-Z</button>
-            </div>
-            <div className="listArea">
+            </InputsArea>
                 <Container >
                     {nameState.map((item, index) => (
                         <ListArea key={index}>
-                            <div>{index + 1}</div>
-                            <div>{item.name}</div> 
-                            <div>{item.email}</div>
-                            <button onClick={() => dispatch({
+                            <div className="itemName">{item.name}</div> 
+                            <div className="itemJob">{item.job}</div>
+                            <MdRemoveCircle className="deleteButton" onClick={() => dispatch({
                                 type: actions.delete,
                                 payload:{
-                                    email: item.email,
+                                    job: item.job,
                                     name: item.name
                                 }
-                            })}>Deletar</button>
+                            })}>Deletar
+                            </MdRemoveCircle>
                         </ListArea>     
                     ))}
                 </Container>
-            </div>
-        </div>
+        </BodyContainer>
     );
 }

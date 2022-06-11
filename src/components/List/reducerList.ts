@@ -18,15 +18,15 @@ const handleSendName = (state: recuderPerson[], action: reducerAction) => {
                 newState.push({
                     id: uuid(),
                     name: action.payload?.name,
-                    email: action.payload?.email
+                    job: action.payload?.job
                 })
                 return newState;
             }
         break; 
         case actions.delete:
-            if(action.payload?.email){
+            if(action.payload?.job){
                 let newState = [...state];
-                newState = newState.filter((item) => item.email !== action.payload?.email);
+                newState = newState.filter((item) => item.job !== action.payload?.job);
                 return newState;
             }
         break;
