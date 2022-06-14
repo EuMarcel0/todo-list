@@ -17,8 +17,9 @@ export type reducerAction = {
 
 //Types para o componente Form
 
-export type PropsForm ={
+export type PropsForm = {
     value: string;
     label: string;
+    validation: boolean;
     changeFunction: (event: React.ChangeEvent<HTMLInputElement>) => void;
 };

@@ -6,7 +6,7 @@
 import { useState, useEffect } from 'react';
 import { useTodoList, actions } from './reducerList';
 import { MdRemoveCircle } from 'react-icons/md';
-import { BodyContainer, Container,InputsArea,ListArea } from './style';
+import { BodyContainer, Container, InputsArea, ListArea } from './style';
 import { Button, Typography } from '@mui/material';
 import { FormInputs } from '../Form/Form';
 import { Box } from '@mui/system';
@@ -17,6 +17,7 @@ export const PersonList = () => {
     const [nameState, dispatch] = useTodoList();
     const [name, setName] = useState('');
     const [job, setJob] = useState('');
+    const [validation, setValidation] = useState(false);
 
     const handleInputListName = (event: React.ChangeEvent<HTMLInputElement>) => {
         setName(event.target.value);
@@ -35,8 +36,8 @@ export const PersonList = () => {
                     name: name,
                 }
             });
-        } else {
-            alert('Todos os campos são obrigatórios');
+        }else{
+            setValidation(true);
         }
         setName('');
         setJob('');
@@ -57,11 +58,13 @@ export const PersonList = () => {
             <Typography variant='button'>Lista de tarefas</Typography>
             <InputsArea>
                 <FormInputs
+                    validation={validation}
                     value={name}
                     label='Informe seu nome...'
                     changeFunction={handleInputListName}
                 />
                 <FormInputs
+                    validation={validation}
                     value={job}
                     label='Nome da tarefa...'
                     changeFunction={handleInputListJob}
@@ -71,19 +74,20 @@ export const PersonList = () => {
                     flexDirection: 'column',
                     width: '100%',
                     gap: '1ch',
-                    mb:'2ch'}}
+                    mb: '2ch'
+                }}
                 >
                     <Button
-                    fullWidth={false}
-                    variant='contained'
-                    onClick={handleInputAdd}
+                        fullWidth={false}
+                        variant='contained'
+                        onClick={handleInputAdd}
                     >
                         Adicionar
                     </Button>
                     <Button
-                    fullWidth={false}
-                    variant='contained'
-                    onClick={handleOrderList}
+                        fullWidth={false}
+                        variant='contained'
+                        onClick={handleOrderList}
                     >
                         Ordernar A-Z
                     </Button>
