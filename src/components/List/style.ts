@@ -1,12 +1,15 @@
-import styled from "styled-components";
+/* eslint-disable linebreak-style */
+import styled from 'styled-components' ;
 
 export const BodyContainer = styled.div`
     width: 100%;
     max-width: 900px;
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding: 20px;
 `;
 export const Container = styled.div`
     display: flex;
@@ -27,6 +30,9 @@ export const InputsArea = styled.div`
             width: 100%;
             max-width: 300px;
         }
+`;
+export const FormInputs = styled.div`
+    margin-bottom: 20px;
 `;
 export const ListArea = styled.div`
     display: flex;
@@ -49,5 +55,4 @@ export const ListArea = styled.div`
                 text-align: left;
             }
         }
-
 `;
