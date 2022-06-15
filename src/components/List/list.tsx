@@ -48,23 +48,34 @@ export const PersonList = () => {
         });
     };
 
+    const handleEnterSendInput = (event: React.KeyboardEvent) => {
+        if(event.code === 'Enter' || event.code === 'NumpadEnter') {
+			handleInputAdd();
+		}
+    };
+
     useEffect(() => {
         handleOrderList();
+        handleEnterSendInput;
         setValidate(false);
-    }, [name, nameState]);
+    }, [name, job]);
 
     return (
         <BodyContainer>
             <Typography variant='button'>Lista de tarefas</Typography>
             <InputsArea>
                 <FormInputs
+                    onKeyUp={handleEnterSendInput}
                     validate={validate}
+                    error='Preenchimento de nome obrigatório'
                     value={name}
                     label='Informe seu nome...'
                     changeFunction={handleInputListName}
                 />
                 <FormInputs
+                    onKeyUp={handleEnterSendInput}
                     validate={validate}
+                    error='Preenchimento de tarefa obrigatório'
                     value={job}
                     label='Nome da tarefa...'
                     changeFunction={handleInputListJob}

@@ -3,7 +3,7 @@
 import { Box, TextField } from '@mui/material';
 import { PropsForm } from '../../types';
  
-export const FormInputs = ({value, label, validate, changeFunction } : PropsForm) => {
+export const FormInputs = ({value, label, validate, error, changeFunction, onKeyUp } : PropsForm) => {
 
     return (
         <Box sx={{
@@ -15,11 +15,13 @@ export const FormInputs = ({value, label, validate, changeFunction } : PropsForm
         }}
         >
             <TextField
+                onKeyUp={onKeyUp}
                 error={validate}
                 id="outlined-name"
                 value={value}
                 label={label}
                 onChange={changeFunction}
+                helperText={validate ? error : ''}
             />
         </Box>
     );

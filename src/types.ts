@@ -21,5 +21,7 @@ export type PropsForm = {
     value: string;
     label: string;
     validate?: boolean;
+    error: string;
     changeFunction: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    onKeyUp: (event: React.KeyboardEvent) => void;
 };
