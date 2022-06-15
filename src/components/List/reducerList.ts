@@ -3,7 +3,7 @@
 /* eslint-disable indent */
 /* eslint-disable linebreak-style */
 
-import { useReducer } from 'react';
+import { useReducer, useState } from 'react';
 import { v4 as uuid } from 'uuid';
 import { recuderPerson, reducerAction } from '../../types';
 

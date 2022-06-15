@@ -20,6 +20,6 @@ export type reducerAction = {
 export type PropsForm = {
     value: string;
     label: string;
-    validation: boolean;
+    validate?: boolean;
     changeFunction: (event: React.ChangeEvent<HTMLInputElement>) => void;
 };

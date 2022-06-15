@@ -17,8 +17,7 @@ export const PersonList = () => {
     const [nameState, dispatch] = useTodoList();
     const [name, setName] = useState('');
     const [job, setJob] = useState('');
-    const [validation, setValidation] = useState(false);
-
+    const [validate, setValidate] = useState(false);
     const handleInputListName = (event: React.ChangeEvent<HTMLInputElement>) => {
         setName(event.target.value);
     };
@@ -36,8 +35,8 @@ export const PersonList = () => {
                     name: name,
                 }
             });
-        }else{
-            setValidation(true);
+        }else if(name === '' && job === ''){
+            setValidate(true);
         }
         setName('');
         setJob('');
@@ -51,20 +50,21 @@ export const PersonList = () => {
 
     useEffect(() => {
         handleOrderList();
-    }, [name]);
+        setValidate(false);
+    }, [name, nameState]);
 
     return (
         <BodyContainer>
             <Typography variant='button'>Lista de tarefas</Typography>
             <InputsArea>
                 <FormInputs
-                    validation={validation}
+                    validate={validate}
                     value={name}
                     label='Informe seu nome...'
                     changeFunction={handleInputListName}
                 />
                 <FormInputs
-                    validation={validation}
+                    validate={validate}
                     value={job}
                     label='Nome da tarefa...'
                     changeFunction={handleInputListJob}

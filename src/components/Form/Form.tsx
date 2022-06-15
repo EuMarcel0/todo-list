@@ -3,7 +3,7 @@
 import { Box, TextField } from '@mui/material';
 import { PropsForm } from '../../types';
  
-export const FormInputs = ({value, label, validation, changeFunction } : PropsForm) => {
+export const FormInputs = ({value, label, validate, changeFunction } : PropsForm) => {
 
     return (
         <Box sx={{
@@ -11,11 +11,11 @@ export const FormInputs = ({value, label, validation, changeFunction } : PropsFo
             flexDirection: 'column',
             width: '100%',
             mb:'1ch',
-            mt:'2ch'
+            mt:'1ch'
         }}
         >
             <TextField
-                error={validation? validation : !validation}
+                error={validate}
                 id="outlined-name"
                 value={value}
                 label={label}
