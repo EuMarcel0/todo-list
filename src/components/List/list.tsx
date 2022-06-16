@@ -5,11 +5,11 @@
 
 import { useState, useEffect } from 'react';
 import { useTodoList, actions } from './reducerList';
-import { MdRemoveCircle } from 'react-icons/md';
-import { BodyContainer, Container, InputsArea, ListArea } from './style';
+import { BodyContainer, Container, InputsArea } from './style';
 import { Button, Typography } from '@mui/material';
 import { FormInputs } from '../Form/Form';
 import { Box } from '@mui/system';
+import { TableItems } from '../TableItems/TableItems';
 
 
 export const PersonList = () => {
@@ -18,6 +18,8 @@ export const PersonList = () => {
     const [name, setName] = useState('');
     const [job, setJob] = useState('');
     const [validate, setValidate] = useState(false);
+    const [tableItemstrue, setTableItemsTrue] = useState(false);
+
     const handleInputListName = (event: React.ChangeEvent<HTMLInputElement>) => {
         setName(event.target.value);
     };
@@ -35,7 +37,8 @@ export const PersonList = () => {
                     name: name,
                 }
             });
-        }else if(name === '' && job === ''){
+            setTableItemsTrue(true);
+        } else if (name === '' && job === '') {
             setValidate(true);
         }
         setName('');
@@ -49,13 +52,12 @@ export const PersonList = () => {
     };
 
     const handleEnterSendInput = (event: React.KeyboardEvent) => {
-        if(event.code === 'Enter' || event.code === 'NumpadEnter') {
-			handleInputAdd();
-		}
+        if (event.code === 'Enter' || event.code === 'NumpadEnter') {
+            handleInputAdd();
+        }
     };
 
     useEffect(() => {
-        handleOrderList();
         handleEnterSendInput;
         setValidate(false);
     }, [name, job]);
@@ -105,20 +107,7 @@ export const PersonList = () => {
                 </Box>
             </InputsArea>
             <Container >
-                {nameState.map((item, index) => (
-                    <ListArea key={index}>
-                        <div className="itemName">{item.name}</div>
-                        <div className="itemJob">{item.job}</div>
-                        <MdRemoveCircle className="deleteButton" onClick={() => dispatch({
-                            type: actions.delete,
-                            payload: {
-                                job: item.job,
-                                name: item.name
-                            }
-                        })}>Deletar
-                        </MdRemoveCircle>
-                    </ListArea>
-                ))}
+                <TableItems items={nameState} table={tableItemstrue}/>
             </Container>
         </BodyContainer>
     );

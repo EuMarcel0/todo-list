@@ -1,5 +1,6 @@
 /* eslint-disable linebreak-style */
 
+
 // Types para o componente ReducerList
 
 export type recuderPerson = {
@@ -25,3 +26,10 @@ export type PropsForm = {
     changeFunction: (event: React.ChangeEvent<HTMLInputElement>) => void;
     onKeyUp: (event: React.KeyboardEvent) => void;
 };
+
+//Type para para passar o array de items dos intpus para o component TableItems
+
+export type TableItemsProps = {
+    items: recuderPerson[];
+    table: boolean;
+}
